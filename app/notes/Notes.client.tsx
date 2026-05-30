@@ -11,7 +11,7 @@ import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 
-function NotesClient() {
+function NotesClient({ tag }: { tag?: string }) {
   const [topic, setTopic] = useState("");
   const [page, setPage] = useState(1);
   const [open, setOpen] = useState(false);
@@ -20,8 +20,8 @@ function NotesClient() {
   const closeModal = () => setOpen(false);
 
   const { data } = useQuery({
-    queryKey: ["notes", topic, page],
-    queryFn: () => fetchNotes({ search: topic, page }),
+    queryKey: ["notes", topic, page, tag],
+    queryFn: () => fetchNotes({ search: topic, page, tag }),
     placeholderData: keepPreviousData,
   });
 
