@@ -1,7 +1,4 @@
-import NoteDetailsClient from "@/app/notes/[id]/NoteDetails.client";
-
 // import Modal from "@/components/Modal/Modal";
-
 import { fetchNoteById } from "@/lib/api";
 
 import {
@@ -9,6 +6,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import NotePreviewClient from "./NotePreview.client";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -28,7 +26,7 @@ const NotePreview = async ({ params }: Props) => {
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <NoteDetailsClient />
+        <NotePreviewClient/>
       </HydrationBoundary>
     </>
   );
